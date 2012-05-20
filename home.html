@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>GA customized report, for Condenast</title>
+<meta name="author" content="Andy, manyinjin@gmail.com">
+<!-- Le HTML5 shim, for IE6-8 support of HTML elements -->
+<!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+<!-- Le styles -->
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script>
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.12/jquery-ui.min.js"></script>
+</head>
+<script type="text/javascript" src="js/jquery.tmpl.min.js"></script>
+<script src="js/jquery.tablesorter.min.js"></script>
+<script type="text/javascript" src="js/chromeExt.js"></script>
+<script type="text/javascript" src="js/gaReportExt.js"></script>
+<script type="text/javascript" src="config/gq.js"></script>
+<script type="text/javascript" src="config/vogue.js"></script>
+<script type="text/javascript" src="config/self.js"></script>
+<script type="text/javascript" src="config/ad.js"></script>
+<script type="text/javascript" src="config/msn_gq.js"></script>
+<script type="text/javascript" src="config/msn_self.js"></script>
+<script type="text/javascript" src="config/msn_vogue.js"></script>
+<script type="text/javascript" src="js/util.js"></script>
+<script type="text/javascript" src="js/highcharts/highcharts.js"></script>
+<script type="text/javascript" src="js/highcharts/modules/exporting.js"></script>
+<link rel="stylesheet"
+	href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.12/themes/ui-lightness/jquery-ui.css" />
+<link href="css/bootstrap-1.1.0.css" rel="stylesheet">
+<link rel="shortcut icon" href="images/graph.png">
+</head>
+<body>
+	<div class="topbar">
+		<div class="fill">
+			<div class="container fixed">
+				<h3>
+					<a href="home.html">GA reporter</a>
+				</h3>
+				<ul>
+					<li><a href="#"><label style="display: none">Created by Tina and Andy</label>version: 1.4.8</a>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</div>
+	<div class="container" id="mainContent">
+		<div class="hero-unit">
+			<h1>GA Reports Generator</h1>
+			<p>GA reporter provides an easy way for you to generate the daily
+				or weekly GA traffics reports. The target of this tool is to save
+				your time and give a chance for you to do more creative things.</p>
+			<p>
+				<a class="btn primary large"
+					href="javascript: gaReportExt.grantAccess();">Get started
+					&raquo;</a>
+			</p>
+		</div>
+
+		<!-- Example row of columns -->
+		<div class="row">
+			<div class="span6">
+				<h2>支持的流量来源分类</h2>
+				<blockquote>
+					<div class="columns">
+						<dl>
+							<dt>Organic</dt>
+							<dd>Search</dd>
+							<dd>Internal Referral</dd>
+							<dd>Condenast Referral</dd>
+							<dd>Direct</dd>
+							<dt>Marketing Activities</dt>
+							<dd>CRM</dd>
+							<dd>Marketing Media-buy</dd>
+							<dt>CPM</dt>
+							<dd>Navigation</dd>
+						</dl>
+					</div>
+				</blockquote>
+			</div>
+
+			<div class="span5">
+				<h2>分频道查看流量</h2>
+				<blockquote>
+					<p>在查看各个流量来源时，均可以按照当前网站的频道来进行分类。各个网站的频道是和当前网站对应的，GA
+						reporter启动时会自动检测当前网站频道配置更新并自动同步到本地。</p>
+				</blockquote>
+			</div>
+			<div class="span5">
+				<h2>技术支持</h2>
+				<blockquote>
+					<p>
+						在使用这个工具的过程中，如果你有任何问题请联系: <br /> &nbsp;&nbsp;&nbsp;&nbsp;Tina:
+						tina.zhou@condenast.com.cn <br /> &nbsp;&nbsp;&nbsp;&nbsp;Andy:
+						manyinjin@gmail.com <br />来获得进一步的技术支持. <br /> Thanks and Enjoy!
+					</p>
+				</blockquote>
+			</div>
+		</div>
+		<footer>
+			<p>&copy; manyinjin@gmail.com</p>
+
+		</footer>
+	</div>
+	<!-- /container -->
+	<div id="ajax_loading_div"
+		style="display: none; z-index: 9999999; position: absolute;">
+		<img src="images/loading36.gif" />
+	</div>
+	<img src="images/1.png" style="display: none"
+		alt="required for Google Data" />
+</body>
+
+<script id="account_tmpl" type="text/x-jquery-tmpl">
+<tr>
+    <td><input type="radio" name="account_radio" title="${title}" accountId="${accountId}" value="${profileId}" tableId="${tableId}" webPropertyId="${webPropertyId}"/></td>
+    <td>${ index }</td><td>${title}</td>
+    <td>${accountName}</td>
+    <td>${accountId}</td>
+    <td>${webPropertyId}</td>
+    <td>${profileId}</td>    
+</tr>
+</script>
+<script id="result_tmpl" type="text/x-jquery-tmpl">
+{{if rowspan >=1}}
+        <td rowspan="${rowspan}">${category}</td>
+{{/if}}
+        <td {{if dimension == 'Sub Total'}}class="subTotal"{{/if}}>${dimension}</td>
+        <td class="data ${subTotalClass}">${GaReporter.addCommas(pageviews)}</td>
+        <td class="data ${subTotalClass}">${GaReporter.addCommas(visitors)}</td>
+        <td class="data ${subTotalClass}">${GaReporter.addCommas(visits)}</td>
+        <td class="data ${subTotalClass}">${Math.round(visits == 0 ? 0 : pageviews / visits * 100)/100.0}</td>
+        <td class="data ${subTotalClass}">${Math.round(visits == 0 ? 0 : bounces/visits * 100)}%</td>
+        <td class="data ${subTotalClass}">${ $item.getAvgTimeOnPage(timeOnPage, pageviews) }</td>
+        <td class="data ${subTotalClass}">${ $item.getAvgTimeOnSite(timeOnSite, visits) }</td>
+</script>
+<script id="channels_result_tmpl" type="text/x-jquery-tmpl">
+    <table cellspacing='0' cellpadding='0'
+            class="common_table zebra-striped results_table" id="channels_result_table">
+            <tr>
+                <td>Category</td>
+                <td>Item</td>
+                <td>Metrics</td> 
+            {{each channels }}
+                <td class="blue">${$value.name}</td> 
+                {{each $value.sub }}
+                <td class="green subChannel">${$value.name}</td> 
+                {{/each}} 
+            {{/each}}
+            </tr>
+            <tr id="organic_search_result">
+                <td rowspan="6">Organic</td>
+                <td>Search</td>
+                <td>
+                    <dl>
+                      <dd class="dd_pv">Pageviews</dd>
+                      <dd class="dd_visitor">Visitors</dd>
+                      <dd class="dd_visit">Visits</dd>
+                      <dd class="dd_pv_visit">Pages/Visit</dd>
+                      <dd class="dd_bounce_rate">BounceRate</dd>
+                      <dd class="dd_time_page">Time/page</dd>
+                      <dd class="dd_time_site">Time/visit</dd>
+                    </dl>
+                </td>
+            {{each channels }}
+                <td id="${'organic_search_result'+$value.code}"></td> 
+                {{each $value.sub }}
+                <td id="${'organic_search_result'+$value.code}" class="subChannel"></td> 
+                {{/each}} 
+            {{/each}}
+            </tr>
+            <tr id="organic_internal_result">
+                <td>Internal Referral</td>
+              <td>
+                    <dl>
+                      <dd class="dd_pv">Pageviews</dd>
+                      <dd class="dd_visitor">Visitors</dd>
+                      <dd class="dd_visit">Visits</dd>
+                      <dd class="dd_pv_visit">Pages/Visit</dd>
+                      <dd class="dd_bounce_rate">BounceRate</dd>
+                      <dd class="dd_time_page">Time/page</dd>
+                      <dd class="dd_time_site">Time/visit</dd>
+                    </dl>
+              </td>
+            {{each channels }}
+                <td id="${'organic_internal_result'+$value.code}"></td> 
+                {{each $value.sub }}
+                <td id="${'organic_internal_result'+$value.code}" class="subChannel"></td> 
+                {{/each}} 
+            {{/each}}
+            </tr>
+            <tr id="organic_company_result">
+                <td>Company Referral</td>
+                <td>
+                    <dl>
+                      <dd class="dd_pv">Pageviews</dd>
+                      <dd class="dd_visitor">Visitors</dd>
+                      <dd class="dd_visit">Visits</dd>
+                      <dd class="dd_pv_visit">Pages/Visit</dd>
+                      <dd class="dd_bounce_rate">BounceRate</dd>
+                      <dd class="dd_time_page">Time/page</dd>
+                      <dd class="dd_time_site">Time/visit</dd>
+                    </dl>
+                </td>
+            {{each channels }}
+                <td id="${'organic_company_result'+$value.code}"></td> 
+                {{each $value.sub }}
+                <td id="${'organic_company_result'+$value.code}" class="subChannel"></td> 
+                {{/each}} 
+            {{/each}}
+            </tr>
+            <tr id="organic_direct_result">
+                <td>Direct</td>
+                <td>
+                    <dl>
+                      <dd class="dd_pv">Pageviews</dd>
+                      <dd class="dd_visitor">Visitors</dd>
+                      <dd class="dd_visit">Visits</dd>
+                      <dd class="dd_pv_visit">Pages/Visit</dd>
+                      <dd class="dd_bounce_rate">BounceRate</dd>
+                      <dd class="dd_time_page">Time/page</dd>
+                      <dd class="dd_time_site">Time/visit</dd>
+                    </dl>
+                </td>
+            {{each channels }}
+                <td id="${'organic_direct_result'+$value.code}"></td> 
+                {{each $value.sub }}
+                <td id="${'organic_direct_result'+$value.code}" class="subChannel"></td> 
+                {{/each}} 
+            {{/each}}
+            </tr>
+            <tr id="organic_syndication_result">
+                <td>Syndication</td>
+                <td>
+                    <dl>
+                      <dd class="dd_pv">Pageviews</dd>
+                      <dd class="dd_visitor">Visitors</dd>
+                      <dd class="dd_visit">Visits</dd>
+                      <dd class="dd_pv_visit">Pages/Visit</dd>
+                      <dd class="dd_bounce_rate">BounceRate</dd>
+                      <dd class="dd_time_page">Time/page</dd>
+                      <dd class="dd_time_site">Time/visit</dd>
+                    </dl>
+                </td>
+            {{each channels }}
+                <td id="${'organic_syndication_result'+$value.code}"></td> 
+                {{each $value.sub }}
+                <td id="${'organic_syndication_result'+$value.code}" class="subChannel"></td> 
+                {{/each}} 
+            {{/each}}
+            </tr>
+            <tr id="organic_total">
+                <td class="subTotal">Sub Total</td>
+                <td>
+                    <dl>
+                      <dd class="dd_pv subTotal">Pageviews</dd>
+                      <dd class="dd_visitor subTotal">Visitors</dd>
+                      <dd class="dd_visit subTotal">Visits</dd>
+                      <dd class="dd_pv_visit subTotal">Pages/Visit</dd>
+                      <dd class="dd_bounce_rate subTotal">BounceRate</dd>
+                      <dd class="dd_time_page subTotal">Time/page</dd>
+                      <dd class="dd_time_site subTotal">Time/visit</dd>
+                    </dl>
+                </td>
+            {{each channels }}
+                <td id="${'organic_total'+$value.code}" class="subTotal"></td> 
+                {{each $value.sub }}
+                <td id="${'organic_total'+$value.code}" class="subChannel subTotal"></td> 
+                {{/each}} 
+            {{/each}}
+            </tr>
+            <tr id="ma_crm_result">
+                <td rowspan="3">Marketing Activities</td>
+                <td>CRM</td>
+                <td>
+                    <dl>
+                      <dd class="dd_pv">Pageviews</dd>
+                      <dd class="dd_visitor">Visitors</dd>
+                      <dd class="dd_visit">Visits</dd>
+                      <dd class="dd_pv_visit">Pages/Visit</dd>
+                      <dd class="dd_bounce_rate">BounceRate</dd>
+                      <dd class="dd_time_page">Time/page</dd>
+                      <dd class="dd_time_site">Time/visit</dd>
+                    </dl>
+                </td>
+            {{each channels }}
+                <td id="${'ma_crm_result'+$value.code}"></td> 
+                {{each $value.sub }}
+                <td id="${'ma_crm_result'+$value.code}" class="subChannel"></td> 
+                {{/each}} 
+            {{/each}}
+            </tr>
+            <tr id="ma_smm_result">
+                <td>Social Media</td>
+                <td>
+                    <dl>
+                      <dd class="dd_pv">Pageviews</dd>
+                      <dd class="dd_visitor">Visitors</dd>
+                      <dd class="dd_visit">Visits</dd>
+                      <dd class="dd_pv_visit">Pages/Visit</dd>
+                      <dd class="dd_bounce_rate">BounceRate</dd>
+                      <dd class="dd_time_page">Time/page</dd>
+                      <dd class="dd_time_site">Time/visit</dd>
+                    </dl>
+                </td>
+            {{each channels }}
+                <td id="${'ma_smm_result'+$value.code}"></td> 
+                {{each $value.sub }}
+                <td id="${'ma_smm_result'+$value.code}" class="subChannel"></td> 
+                {{/each}} 
+            {{/each}}
+            </tr>
+            <tr id="ma_total">
+                <td class="subTotal">Sub Total</td>
+                <td>
+                    <dl>
+                      <dd class="dd_pv subTotal">Pageviews</dd>
+                      <dd class="dd_visitor subTotal">Visitors</dd>
+                      <dd class="dd_visit subTotal">Visits</dd>
+                      <dd class="dd_pv_visit subTotal">Pages/Visit</dd>
+                      <dd class="dd_bounce_rate subTotal">BounceRate</dd>
+                      <dd class="dd_time_page subTotal">Time/page</dd>
+                      <dd class="dd_time_site subTotal">Time/visit</dd>
+                    </dl>
+                </td>
+            {{each channels }}
+                <td id="${'ma_total'+$value.code}" class="subTotal"></td> 
+                {{each $value.sub }}
+                <td id="${'ma_total'+$value.code}" class="subChannel subTotal"></td> 
+                {{/each}} 
+            {{/each}}
+            </tr>
+            <tr id="mmb_cpm_result">
+                <td rowspan="3">Marketing Media-buy</td>
+                <td>CPM</td>
+                <td>
+                    <dl>
+                      <dd class="dd_pv">Pageviews</dd>
+                      <dd class="dd_visitor">Visitors</dd>
+                      <dd class="dd_visit">Visits</dd>
+                      <dd class="dd_pv_visit">Pages/Visit</dd>
+                      <dd class="dd_bounce_rate">BounceRate</dd>
+                      <dd class="dd_time_page">Time/page</dd>
+                      <dd class="dd_time_site">Time/visit</dd>
+                    </dl>
+                </td>
+            {{each channels }}
+                <td id="${'mmb_cpm_result'+$value.code}"></td> 
+                {{each $value.sub }}
+                <td id="${'mmb_cpm_result'+$value.code}" class="subChannel"></td> 
+                {{/each}} 
+            {{/each}}
+            </tr>
+            <tr id="mmb_navigation_result">
+                <td>Navigation</td>
+                <td>
+                    <dl>
+                      <dd class="dd_pv">Pageviews</dd>
+                      <dd class="dd_visitor">Visitors</dd>
+                      <dd class="dd_visit">Visits</dd>
+                      <dd class="dd_pv_visit">Pages/Visit</dd>
+                      <dd class="dd_bounce_rate">BounceRate</dd>
+                      <dd class="dd_time_page">Time/page</dd>
+                      <dd class="dd_time_site">Time/visit</dd>
+                    </dl>
+                </td>
+            {{each channels }}
+                <td id="${'mmb_navigation_result'+$value.code}"></td> 
+                {{each $value.sub }}
+                <td id="${'mmb_navigation_result'+$value.code}" class="subChannel"></td> 
+                {{/each}} 
+            {{/each}}
+            </tr>
+            <tr id="mmb_total">
+                <td class="subTotal">Sub Total</td>
+                <td>
+                    <dl>
+                      <dd class="dd_pv subTotal">Pageviews</dd>
+                      <dd class="dd_visitor subTotal">Visitors</dd>
+                      <dd class="dd_visit subTotal">Visits</dd>
+                      <dd class="dd_pv_visit subTotal">Pages/Visit</dd>
+                      <dd class="dd_bounce_rate subTotal">BounceRate</dd>
+                      <dd class="dd_time_page subTotal">Time/page</dd>
+                      <dd class="dd_time_site subTotal">Time/visit</dd>
+                    </dl>
+                </td>
+            {{each channels }}
+                <td id="${'mmb_total'+$value.code}" class="subTotal"></td> 
+                {{each $value.sub }}
+                <td id="${'mmb_total'+$value.code}" class="subChannel subTotal"></td> 
+                {{/each}} 
+            {{/each}}
+            </tr>
+            <tr id="total_result">
+                <td>Total</td>
+                <td></td>
+                <td>
+                    <dl>
+                      <dd class="dd_pv">Pageviews</dd>
+                      <dd class="dd_visitor">Visitors</dd>
+                      <dd class="dd_visit">Visits</dd>
+                      <dd class="dd_pv_visit">Pages/Visit</dd>
+                      <dd class="dd_bounce_rate">BounceRate</dd>
+                      <dd class="dd_time_page">Time/page</dd>
+                      <dd class="dd_time_site">Time/visit</dd>
+                    </dl>
+                </td>
+            {{each channels }}
+                <td id="${'total_result'+$value.code}"></td> 
+                {{each $value.sub }}
+                <td id="${'total_result'+$value.code}" class="subChannel"></td> 
+                {{/each}} 
+            {{/each}}
+            </tr>
+        </table>
+</script>
+<script id="channel_result_tmpl" type="text/x-jquery-tmpl">
+<dl>
+        <dd class="dd_pv ${parentChannelClass + " " + subTotalClass}">${GaReporter.addCommas(pageviews)}</dd>
+        <dd class="dd_visitor ${parentChannelClass + " " + subTotalClass}">${GaReporter.addCommas(visitors)}</dd>
+        <dd class="dd_visit ${parentChannelClass + " " + subTotalClass}">${GaReporter.addCommas(visits)}</dd>
+        <dd class="dd_pv_visit ${parentChannelClass + " " + subTotalClass}">${Math.round(visits == 0 ? 0 : pageviews / visits * 100)/100.0}</dd>
+        <dd class="dd_bounce_rate ${parentChannelClass + " " + subTotalClass}">${Math.round(visits == 0 ? 0 : bounces/visits * 100)}%</dd>
+        <dd class="dd_time_page ${parentChannelClass + " " + subTotalClass}">${ $item.getAvgTimeOnPage(timeOnPage, pageviews) }</dd>
+        <dd class="dd_time_site ${parentChannelClass + " " + subTotalClass}">${ $item.getAvgTimeOnSite(timeOnSite, visits) }</dd>
+</dl>
+</script>
+<script type="text/javascript">
+	$(function() {
+		$("#ajax_loading_div").ajaxStart(function() {
+			$(this).css("top", ($(window).height() - $(this).height()) / 2 + $(window).scrollTop() + "px");
+			$(this).css("left", ($(window).width() - $(this).width()) / 2 + $(window).scrollLeft() + "px");
+			$(this).show();
+		})
+		$("#ajax_loading_div").ajaxComplete(function() {
+			$(this).hide();
+		});
+		gaReportExt.checkAuth();
+	});
+</script>
+</html>

@@ -1,0 +1,229 @@
+<html>
+<head>
+<title>GA customized reporter</title>
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script>
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.12/jquery-ui.min.js"></script>
+</head>
+<script type="text/javascript" src="js/jquery.tmpl.min.js"></script>
+<script type="text/javascript" src="js/chromeExt.js"></script>
+<script type="text/javascript" src="js/gaReportExt.js"></script>
+<link rel="stylesheet"
+	href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.12/themes/ui-lightness/jquery-ui.css" />
+<link rel="stylesheet" href="css/bootstrap-1.1.0.css" type="text/css" />
+<body>
+	<div class="topbar">
+		<div class="fill">
+			<div class="container fixed">
+				<h3>
+					<a href="#">GA reporter</a>
+				</h3>
+				<ul>
+					<li><a href="gaReporter.html">created by Tina and Andy</a>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</div>
+	<div class="container" style="margin-top: 60px">
+		<div class="row">
+			<div class="span12 columns">
+				<form>
+					<fieldset>
+						<legend>Organic</legend>
+						<div class="clearfix">
+							<label for="textarea">Search: </label>
+							<div class="input">
+								<textarea name="textarea" id="textarea" class="xlarge"></textarea>
+								<span class="help-block">Example: google,bing,soso,yahoo</span>
+							</div>
+						</div>
+						<div class="clearfix">
+							<label for="">Internal Referral: </label>
+							<div class="input">
+								<input type="text" size="30" name="xlInput" id="xlInput"
+									class="xlarge error"> <span class="help-inline">the current </span>
+							</div>
+						</div>
+
+						<div class="clearfix">
+							<label for="">Condenast Referral: </label>
+							<div class="input">
+								<select multiple="multiple">
+									<option value="vogue.com.cn">www.vogue.com.cn</option>
+									<option value="self.com.cn">www.self.com.cn</option>
+									<option value="gq.com.cn">www.gq.com.cn</option>
+									<option value="adstyle.com.cn">www.adstyle.com.cn</option>
+								</select>
+							</div>
+						</div>
+						<!-- /clearfix -->
+						<div class="clearfix">
+							<label>Uneditable Input</label>
+							<div class="input">
+								<span class="uneditable-input">Some Value Here</span>
+							</div>
+						</div>
+						<!-- /clearfix -->
+						<div class="clearfix">
+							<label for="disabledInput">Disabled Input</label>
+							<div class="input">
+								<input type="text" disabled=""
+									placeholder="Disabled input here… carry on." size="30"
+									name="disabledInput" id="disabledInput" class="xlarge disabled">
+							</div>
+						</div>
+						<!-- /clearfix -->
+						<div class="clearfix error">
+							<label for="xlInput">X-Large Input</label>
+							<div class="input">
+								<input type="text" size="30" name="xlInput" id="xlInput"
+									class="xlarge error"> <span class="help-inline">Small
+									snippet of help text</span>
+							</div>
+						</div>
+						<!-- /clearfix -->
+					</fieldset>
+					<fieldset>
+						<legend>Example form legend</legend>
+						<div class="clearfix">
+							<label for="prependedInput">Prepended Text</label>
+							<div class="input">
+								<div class="input-prepend">
+									<span class="add-on">@</span> <input type="text" size="16"
+										name="prependedInput" id="prependedInput" class="medium">
+								</div>
+							</div>
+						</div>
+						<!-- /clearfix -->
+						<div class="clearfix">
+							<label for="prependedInput2">Prepended Checkbox</label>
+							<div class="input">
+								<div class="input-prepend">
+									<label class="add-on"><input type="checkbox" value=""
+										id="" name=""> </label> <input type="text" size="16"
+										name="prependedInput2" id="prependedInput2" class="mini">
+								</div>
+							</div>
+						</div>
+						<!-- /clearfix -->
+						<div class="clearfix">
+							<label for="appendedInput">Appended Checkbox</label>
+							<div class="input">
+								<div class="input-append">
+									<input type="text" size="16" name="appendedInput"
+										id="appendedInput" class="mini"> <label
+										class="add-on active"><input type="checkbox"
+										checked="checked" value="" id="" name=""> </label>
+								</div>
+							</div>
+						</div>
+						<!-- /clearfix -->
+						<div class="clearfix">
+							<label for="xlInput">File Input</label>
+							<div class="input">
+								<input type="file" name="fileInput" id="fileInput"
+									class="input-file">
+							</div>
+						</div>
+						<!-- /clearfix -->
+					</fieldset>
+					<fieldset>
+						<legend>Example form legend</legend>
+						<div class="clearfix">
+							<label id="optionsCheckboxes">List of Options</label>
+							<div class="input">
+								<ul class="inputs-list">
+									<li><label> <input type="checkbox" value="option1"
+											name="optionsCheckboxes"> <span>Option one is
+												this and that&mdash;be sure to include why it’s great</span> </label></li>
+									<li><label> <input type="checkbox" value="option2"
+											name="optionsCheckboxes"> <span>Option two can
+												also be checked and included in form results</span> </label></li>
+									<li><label> <input type="checkbox" value="option2"
+											name="optionsCheckboxes"> <span>Option three
+												can&mdash;yes, you guessed it&mdash;also be checked and
+												included in form results</span> </label></li>
+									<li><label class="disabled"> <input
+											type="checkbox" disabled="" value="option2"
+											name="optionsCheckboxes"> <span>Option four
+												cannot be checked as it is disabled.</span> </label></li>
+								</ul>
+								<span class="help-block"> <strong>Note:</strong> Labels
+									surround all the options for much larger click areas and a more
+									usable form. </span>
+							</div>
+						</div>
+						<!-- /clearfix -->
+						<div class="clearfix">
+							<label>Date Range</label>
+							<div class="input">
+								<div class="inline-inputs">
+									<input type="text" value="May 1, 2011" class="small"> <input
+										type="text" value="12:00am" class="mini"> to <input
+										type="text" value="May 8, 2011" class="small"> <input
+										type="text" value="11:59pm" class="mini"> <span
+										class="help-inline">All times are shown as Pacific
+										Standard Time (GMT -08:00).</span>
+								</div>
+							</div>
+						</div>
+						<!-- /clearfix -->
+						<div class="clearfix">
+							<label for="textarea">Textarea</label>
+							<div class="input">
+								<textarea name="textarea" id="textarea" class="xxlarge"></textarea>
+								<span class="help-block"> Block of help text to describe
+									the field above if need be. </span>
+							</div>
+						</div>
+						<!-- /clearfix -->
+						<div class="clearfix">
+							<label id="optionsRadio">List of Options</label>
+							<div class="input">
+								<ul class="inputs-list">
+									<li><label> <input type="checkbox" value="option1"
+											name="optionsCheckboxes"> <span>Option one is
+												this and that&mdash;be sure to include why it’s great</span> </label></li>
+									<li><label> <input type="checkbox" value="option2"
+											name="optionsCheckboxes"> <span>Option two can
+												also be checked and included in form results</span> </label></li>
+								</ul>
+							</div>
+						</div>
+						<!-- /clearfix -->
+						<div class="actions">
+							<button class="btn primary" type="submit">Save Changes</button>
+							&nbsp;
+							<button class="btn" type="reset">Cancel</button>
+						</div>
+					</fieldset>
+				</form>
+			</div>
+		</div>
+	</div>
+	<img src="images/1.png" style="display: none"
+		alt="required for Google Data" />
+	<div id="ajax_loading_div"
+		style="display: none; z-index: 9999999; position: absolute;">
+		<img src="images/loading36.gif" />
+	</div>
+	<footer>
+	<p>&copy; manyinjin@gmail.com</p>
+	</footer>
+	</div>
+</body>
+<script type="text/javascript">
+	$(function() {
+		$("#ajax_loading_div").ajaxStart(function() {
+			$(this).css("top", ($(window).height() - $(this).height()) / 2 + $(window).scrollTop() + "px");
+			$(this).css("left", ($(window).width() - $(this).width()) / 2 + $(window).scrollLeft() + "px");
+			$(this).show();
+		})
+		$("#ajax_loading_div").ajaxComplete(function() {
+			$(this).hide();
+		});
+	});
+</script>
+</html>

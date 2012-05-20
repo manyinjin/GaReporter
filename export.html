@@ -1,0 +1,17 @@
+<html>
+<head>
+<title>Exported CSV</title>
+<title>GA customized reporter</title>
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script>
+</head>
+<body>
+	<h1>Exported CSV</h1>
+	<label>Copy and paste the csv content to create an Excel file</label>
+	<div style="border: 1px solid #aaa666; height: 100%; width: 100%; background-color: #F0F0EF; overflow:auto" id="exported_content"></div>
+</body>
+<script type="text/javascript">
+	$("#exported_content").empty().html(localStorage.getItem("exportedData"));
+	localStorage.removeItem("exportedData")
+</script>
+</html>

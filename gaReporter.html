@@ -1,0 +1,239 @@
+<div class="container" style="margin-top: 60px">
+	<div class="row">
+		<div class="span12 columns">
+			<form id="conditions_form">
+				<fieldset>
+					<legend>Site structure</legend>
+					<div class="clearfix">
+						<label for="">Site Version:</label>
+						<div class="input">
+							<select name="site_structure" id="site_structure">
+							</select>
+						</div>
+					</div>
+				</fieldset>
+				<fieldset>
+					<legend>Organic</legend>
+					<div class="clearfix">
+						<label for="organic_search">Search: </label>
+						<div class="input">
+							<textarea name="organic_search" id="organic_search"
+								class="xxlarge">google,baidu,soso,sogou,yahoo,bing</textarea>
+							<span class="help-inline">Example: google,bing,soso,yahoo</span>
+						</div>
+					</div>
+					<div class="clearfix">
+						<label for="">Internal Referral: </label>
+						<div class="input">
+							<input type="text" size="30" name="organic_internal_referral"
+								id="organic_internal_referral" class="xxlarge"> <span
+								class="help-inline">Eg, vogue.com.cn for Vogue</span>
+						</div>
+					</div>
+					<div class="clearfix">
+						<label for="">Condenast Referral: </label>
+						<div class="input">
+							<input type="text" size="40" name="organic_company_referral"
+								id="organic_company_referral" class="xxlarge"> <span
+								class="help-inline">Eg, gq.com.cn,self.com.cn for Vogue</span>
+						</div>
+					</div>
+					<div class="clearfix">
+						<label>Direct</label>
+						<div class="input">
+							<input type="text" disabled value="Direct traffics" size="30"
+								name="disabledInput" id="disabledInput" class="xxlarge disabled">
+						</div>
+					</div>
+					<div class="clearfix">
+						<label for="organic_syndication">Syndication: </label>
+						<div class="input">
+							<textarea name="organic_syndication" id="organic_syndication"
+								class="xxlarge"></textarea>
+							<span class="help-inline">Eg: sina.com.cn,163.com.cn</span>
+						</div>
+					</div>
+				</fieldset>
+				<fieldset>
+					<legend>Marketing Activities</legend>
+					<div class="clearfix">
+						<label>CRM</label>
+						<div class="input">
+							<input type="text" disabled
+								value="_utm_source=DMdelivery and _utm_medium=email" size="30"
+								name="disabledInput" id="disabledInput" class="xxlarge disabled">
+						</div>
+					</div>
+					<div class="clearfix">
+						<label for="ma_smm">Social Media Marketing: </label>
+						<div class="input">
+							<textarea name="ma_smm" id="ma_smm" class="xxlarge">renren.com,kaixin001.com,t.qq.com,weibo.com</textarea>
+							<span class="help-inline">t.qq.com,weibo.com</span>
+						</div>
+					</div>
+				</fieldset>
+				<fieldset>
+					<legend>Marketing Media-buy</legend>
+					<div class="clearfix">
+						<label>CPM</label>
+						<div class="input">
+							<input type="text" disabled
+								value="All index120 pages promoted by marketing" size="30"
+								name="disabledInput" id="disabledInput" class="xxlarge disabled">
+						</div>
+					</div>
+					<div class="clearfix">
+						<label for="mmb_navigation">Navigation: </label>
+						<div class="input">
+							<textarea name="mmb_navigation" id="mmb_navigation"
+								class="xxlarge">265.com,hao123.com</textarea>
+							<span class="help-inline">Eg: 265.com,hao123.com</span>
+						</div>
+					</div>
+					<div class="clearfix">
+						<label>Date Range</label>
+						<div class="input">
+							<div class="inline-inputs">
+								<input name="startDate" id="startDate" class="small" /> to <input
+									name="endDate" id="endDate" class="small" /> <select
+									name="dataDivider" id="dataDivider">
+									<option value="ga:date">Divided data by date</option>
+									<option value="ga:browser">Divided data by unique
+										visitor</option>
+								</select> <span class="help-inline">Click to select start date and
+									end date</span>
+							</div>
+						</div>
+					</div>
+				</fieldset>
+			</form>
+		</div>
+	</div>
+	<div class="row clearfix" id="metrics_filter_div">
+		<label id="optionsCheckboxes">List of Options</label>
+		<div class="input">
+			<ul class="inputs-list">
+				<li><label> <input type="checkbox" value="subChannel"
+						name="pvChbox"> <span>Sub Channels</span> </label>
+				</li>
+				<li><label> <input type="checkbox" value="dd_pv"
+						checked name="pvChbox"> <span>Pageviews</span> </label>
+				</li>
+				<li><label> <input type="checkbox" value="dd_visitor"
+						checked name="pvChbox"> <span>Visitors</span> </label>
+				</li>
+				<li><label> <input type="checkbox" value="dd_visit"
+						checked name="pvChbox"> <span>Visits</span> </label>
+				</li>
+				<li><label> <input type="checkbox" value="dd_pv_visit"
+						checked name="pvChbox"> <span>Pages per Visit</span> </label>
+				</li>
+				<li><label> <input type="checkbox"
+						value="dd_bounce_rate" checked name="pvChbox"> <span>Bounce
+							Rate</span> </label>
+				</li>
+				<li><label> <input type="checkbox" value="dd_time_page"
+						checked name="pvChbox"> <span>Avg. Time on Page</span> </label>
+				</li>
+				<li><label> <input type="checkbox" value="dd_time_site"
+						checked name="pvChbox"> <span>Avg. Time on Site</span> </label>
+				</li>
+			</ul>
+			<span class="help-block"> <strong>Note:</strong> Uncheck the
+				metrics to hide the values </span>
+		</div>
+	</div>
+	<div class="well" style="padding: 8px 15px;">
+		<button type="button" class="btn primary" id="createBtn"
+			name="createBtn">Create Report</button>
+		&nbsp;
+		<button type="button" class="btn primary" id="createByChannelBtn"
+			name="createByChannelBtn">Create Report by Channel</button>
+		&nbsp;
+		<button type="button" class="btn primary" name="reloadBtn"
+			id="reloadBtn">Reload Configurations</button>
+		&nbsp;
+		<button type="button" class="btn primary exportBtn" name="exportBtn"
+			id="exportBtn" style="display: none">Export CSV Report</button>
+		&nbsp;
+		<button type="button" class="btn" name="editBtn" id="editBtn"
+			style="display: none">Show Conditions</button>
+	</div>
+	<div class="alert-message error" id="no_channels_tips"
+		style="display: none">
+		<p>
+			<strong>Ah Oh!</strong> No channels defined for this profile.
+		</p>
+	</div>
+	<div class="alert-message info" id="loading_tooltips"
+		style="display: none">
+		<p>
+			<img alt="loading" src="images/loading_small.gif" /> <strong>Loading...</strong>&nbsp;
+			GA reporter is currently loading the result for you, please wait...
+		</p>
+	</div>
+	<div class="row" id="common_result_container">
+		<table cellspacing='0' cellpadding='0'
+			class="common_table zebra-striped results_table"
+			style="display: none" id="result_table">
+			<tr>
+				<td>Category</td>
+				<td>Item</td>
+				<td>Pageviews</td>
+				<td>Visitors</td>
+				<td>Visits</td>
+				<td>Pages/Visit</td>
+				<td>Bounce Rate</td>
+				<td>Avg Time/Page</td>
+				<td>Avg Time/Site</td>
+			</tr>
+			<tr id="organic_search_result"></tr>
+			<tr id="organic_internal_result"></tr>
+			<tr id="organic_company_result"></tr>
+			<tr id="organic_direct_result"></tr>
+			<tr id="organic_syndication_result"></tr>
+			<tr id="organic_total"></tr>
+			<tr id="ma_crm_result"></tr>
+			<tr id="ma_smm_result"></tr>
+			<tr id="ma_total"></tr>
+			<tr id="mmb_cpm_result"></tr>
+			<tr id="mmb_navigation_result"></tr>
+			<tr id="mmb_total"></tr>
+			<tr id="total_result"></tr>
+		</table>
+	</div>
+	<div class="row" id="channels_result_container"></div>
+	<div class="row" id="charts_container" style="display: none">
+		<div class="clearfix">
+			<label for="">Source Filter:</label>
+			<div class="input">
+				<select name="source_filter" id="source_filter">
+					<option value="organic,search">Organic Search</option>
+					<option value="organic,inref">Organic Internal</option>
+					<option value="organic,comref">Organic Condenast Referral</option>
+					<option value="organic,direct">Organic Direct</option>
+					<option value="organic,syn">Organic Syndication</option>
+					<option value="organic,all">Organic All</option>
+					<option value="ma,crm">Marketing Activities CRM</option>
+					<option value="ma,sm">Marketing Activities Social</option>
+					<option value="ma,all">Marketing Activities All</option>
+					<option value="mmb,cpm">Marketing Media-buy CPM</option>
+					<option value="mmb,nav">Marketing Media-buy Navigation</option>
+					<option value="mmb,all">Marketing Media-buy All</option>
+					<option value="total,">All</option>
+				</select>
+			</div>
+		</div>
+		<div class="dd_pv" id="pv_charts"></div>
+		<div class="dd_visitor" id="visitor_charts"></div>
+		<div class="dd_visit" id="visit_charts"></div>
+		<div class="dd_pv_visit" id="pv_visit_charts"></div>
+		<div class="dd_bounce_rate" id="bounce_rate_charts"></div>
+		<div class="dd_time_page" id="time_page_charts"></div>
+		<div class="dd_pv_site" id="time_site_charts"></div>
+	</div>
+	<footer>
+	<p>&copy; manyinjin@gmail.com</p>
+	</footer>
+
+</div>

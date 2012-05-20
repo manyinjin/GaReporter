@@ -1,0 +1,15 @@
+<html>
+<head>
+<title>GA customized reporter</title>
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script>
+</head>
+<body style="display: none">
+</body>
+<script type="text/javascript">
+    chrome.browserAction.setBadgeText({text: 'CN'});
+    chrome.browserAction.onClicked.addListener(function(tab) {
+    	chrome.tabs.create({url: "home.html"});
+    })
+</script>
+</html>
