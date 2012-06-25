@@ -16,6 +16,7 @@
 </head>
 <script type="text/javascript" src="js/jquery.tmpl.min.js"></script>
 <script src="js/jquery.tablesorter.min.js"></script>
+<script src="/oauth2/oauth2.js"></script>
 <script type="text/javascript" src="js/chromeExt.js"></script>
 <script type="text/javascript" src="js/gaReportExt.js"></script>
 <script type="text/javascript" src="config/gq.js"></script>
@@ -41,8 +42,8 @@
 					<a href="home.html">GA reporter</a>
 				</h3>
 				<ul>
-					<li><a href="#"><label style="display: none">Created by Tina and Andy</label>version: 1.5.0</a>
-					</li>
+					<li><a href="#"><label style="display: none">Created
+								by Tina and Andy</label>version: 1.6.0</a></li>
 				</ul>
 			</div>
 		</div>
@@ -55,7 +56,7 @@
 				your time and give a chance for you to do more creative things.</p>
 			<p>
 				<a class="btn primary large"
-					href="javascript: gaReportExt.grantAccess();">Get started
+					href="javascript: googleChromeExtAuth.grantAccess();">Get started
 					&raquo;</a>
 			</p>
 		</div>
@@ -116,9 +117,9 @@
 
 <script id="account_tmpl" type="text/x-jquery-tmpl">
 <tr>
-    <td><input type="radio" name="account_radio" title="${title}" accountId="${accountId}" value="${profileId}" tableId="${tableId}" webPropertyId="${webPropertyId}"/></td>
-    <td>${ index }</td><td>${title}</td>
-    <td>${accountName}</td>
+    <td><input type="radio" name="account_radio" title="${profileName}" accountId="${accountId}" value="${profileId}" tableId="${tableId}" webPropertyId="${webPropertyId}"/></td>
+    <td>${ index }</td>
+    <td>${profileName}</td>
     <td>${accountId}</td>
     <td>${webPropertyId}</td>
     <td>${profileId}</td>    
@@ -430,11 +431,18 @@
 </script>
 <script type="text/javascript">
 	$(function() {
-		$("#ajax_loading_div").ajaxStart(function() {
-			$(this).css("top", ($(window).height() - $(this).height()) / 2 + $(window).scrollTop() + "px");
-			$(this).css("left", ($(window).width() - $(this).width()) / 2 + $(window).scrollLeft() + "px");
-			$(this).show();
-		})
+		$("#ajax_loading_div").ajaxStart(
+				function() {
+					$(this).css(
+							"top",
+							($(window).height() - $(this).height()) / 2
+									+ $(window).scrollTop() + "px");
+					$(this).css(
+							"left",
+							($(window).width() - $(this).width()) / 2
+									+ $(window).scrollLeft() + "px");
+					$(this).show();
+				})
 		$("#ajax_loading_div").ajaxComplete(function() {
 			$(this).hide();
 		});

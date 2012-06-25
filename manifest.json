@@ -1,15 +1,21 @@
 {
     "name": "GA reports generator",
-    "version": "1.5.0",
+    "version": "1.6.0",
     "description": "Developed by Andy: manyinjin@gmail.com",
     "browser_action": {
         "default_icon": "images/graph.png",
-        "default_title": "GA reporter 1.5.0"
+        "default_title": "GA reporter 1.6.0"
      },
     "background_page": "index.html",
     "permissions": [
-        "tabs", "https://www.google.com/"
+        "tabs", "https://www.google.com/", "https://accounts.google.com/o/oauth2/token"
     ],
     "icons": {"16": "images/graph.png", "48":"images/graph.png", "128": "images/graph.png"},
-   "update_url": "http://211.103.229.236:90/extension/update.xml"
+   "update_url": "http://211.103.229.236:90/extension/update.xml",
+   "content_scripts": [
+       {
+           "matches": ["http://www.google.com/robots.txt*"],
+           "js": ["oauth2/oauth2_inject.js"],
+           "run_at": "document_start"
+    }]
 }

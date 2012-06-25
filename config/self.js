@@ -16,18 +16,18 @@
 									{
 										name : "首页",
 										code : "homePage",
-										filter : "ga: customVarValue1 == homePage;ga: hostname == www.self.com.cn;ga: pagePath ! ~ / [ ^ index]",
+										filter : "ga:customVarValue1==homePage;ga:hostname==www.self.com.cn;ga:pagePath!~/[^index]",
 										sub : []
 									},
 									{
 										name : "潮流穿搭",
 										code : "fashion",
-										filter : "ga: hostname == fashion.self.com.cn",
+										filter : "ga:hostname==fashion.self.com.cn",
 										sub : [
 												{
 													name : "潮流穿搭",
 													code : "fashion_selfstyle",
-													filter : "ga: pagePath = ~ / selfstyle;ga:hostname==fashion.self.com.cn"
+													filter : "ga:pagePath=~/selfstyle;ga:hostname==fashion.self.com.cn"
 												},
 												{
 													name : "DOs_Donts",
@@ -706,4 +706,4 @@
 	}
 	window._channels = window._channels ? window._channels : {};
 	window._channels['www.self.com.cn'] = new SelfChannels();
-});
+})();
