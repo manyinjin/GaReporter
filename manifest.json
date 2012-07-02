@@ -1,10 +1,10 @@
 {
     "name": "GA reports generator",
-    "version": "1.6.0",
+    "version": "1.6.1",
     "description": "Developed by Andy: manyinjin@gmail.com",
     "browser_action": {
         "default_icon": "images/graph.png",
-        "default_title": "GA reporter 1.6.0"
+        "default_title": "GA reporter 1.6.1"
      },
     "background_page": "index.html",
     "permissions": [

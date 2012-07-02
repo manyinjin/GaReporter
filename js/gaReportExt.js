@@ -542,6 +542,10 @@
             'end-date' : endDate
         };
         if (filters) {
+            var lastChar = filters.substring(filters.length-1, filters.length);
+            if(lastChar == "," || lastChar==";") {
+                filters = filters.substring(0, filters.length-1);
+            }
             options["filters"] = filters;
         }
         return options;
