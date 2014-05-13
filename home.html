@@ -4,16 +4,8 @@
 <meta charset="utf-8">
 <title>GA customized report, for Condenast</title>
 <meta name="author" content="Andy, manyinjin@gmail.com">
-<!-- Le HTML5 shim, for IE6-8 support of HTML elements -->
-<!--[if lt IE 9]>
-      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
-    <![endif]-->
-<!-- Le styles -->
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script>
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.12/jquery-ui.min.js"></script>
-</head>
+<script src="js/jquery-2.1.1.min.js"></script>
+<script src="js/jquery-ui-1.10.4.min.js"></script>
 <script type="text/javascript" src="js/jquery.tmpl.min.js"></script>
 <script src="js/jquery.tablesorter.min.js"></script>
 <script src="/oauth2/oauth2.js"></script>
@@ -29,8 +21,8 @@
 <script type="text/javascript" src="js/util.js"></script>
 <script type="text/javascript" src="js/highcharts/highcharts.js"></script>
 <script type="text/javascript" src="js/highcharts/modules/exporting.js"></script>
-<link rel="stylesheet"
-	href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.12/themes/ui-lightness/jquery-ui.css" />
+<script type="text/javascript" src="js/home.js"></script>
+<link rel="stylesheet" href="css/jquery-ui-1.10.4.min.css" />
 <link href="css/bootstrap-1.1.0.css" rel="stylesheet">
 <link rel="shortcut icon" href="images/graph.png">
 </head>
@@ -55,9 +47,9 @@
 				or weekly GA traffics reports. The target of this tool is to save
 				your time and give a chance for you to do more creative things.</p>
 			<p>
-				<a class="btn primary large"
-					href="javascript: googleChromeExtAuth.grantAccess();">Get started
-					&raquo;</a>
+				<a class="btn primary large" id="start_btn"
+					href="#">Get
+					started &raquo;</a>
 			</p>
 		</div>
 
@@ -113,8 +105,7 @@
 	</div>
 	<img src="images/1.png" style="display: none"
 		alt="required for Google Data" />
-</body>
-
+	
 <script id="account_tmpl" type="text/x-jquery-tmpl">
 <tr>
     <td><input type="radio" name="account_radio" title="${profileName}" accountId="${accountId}" value="${profileId}" tableId="${tableId}" webPropertyId="${webPropertyId}"/></td>
@@ -429,24 +420,5 @@
         <dd class="dd_time_site ${parentChannelClass + " " + subTotalClass}">${ $item.getAvgTimeOnSite(timeOnSite, visits) }</dd>
 </dl>
 </script>
-<script type="text/javascript">
-	$(function() {
-		$("#ajax_loading_div").ajaxStart(
-				function() {
-					$(this).css(
-							"top",
-							($(window).height() - $(this).height()) / 2
-									+ $(window).scrollTop() + "px");
-					$(this).css(
-							"left",
-							($(window).width() - $(this).width()) / 2
-									+ $(window).scrollLeft() + "px");
-					$(this).show();
-				})
-		$("#ajax_loading_div").ajaxComplete(function() {
-			$(this).hide();
-		});
-		gaReportExt.checkAuth();
-	});
-</script>
+</body>
 </html>

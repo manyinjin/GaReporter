@@ -1,16 +1,13 @@
 <html>
 <head>
 <title>GA customized reporter</title>
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script>
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.12/jquery-ui.min.js"></script>
-</head>
+
+<script src="js/jquery-2.1.1.min.js"></script>
+<script src="js/jquery-ui-1.10.4.min.js"></script>
 <script type="text/javascript" src="js/jquery.tmpl.min.js"></script>
 <script type="text/javascript" src="js/chromeExt.js"></script>
 <script type="text/javascript" src="js/gaReportExt.js"></script>
-<link rel="stylesheet"
-	href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.12/themes/ui-lightness/jquery-ui.css" />
+<link rel="stylesheet" href="css/jquery-ui-1.10.4.css" />
 <link rel="stylesheet" href="css/bootstrap-1.1.0.css" type="text/css" />
 <body>
 	<div class="topbar">
@@ -20,8 +17,7 @@
 					<a href="#">GA reporter</a>
 				</h3>
 				<ul>
-					<li><a href="gaReporter.html">created by Tina and Andy</a>
-					</li>
+					<li><a href="gaReporter.html">created by Tina and Andy</a></li>
 				</ul>
 			</div>
 		</div>
@@ -43,7 +39,8 @@
 							<label for="">Internal Referral: </label>
 							<div class="input">
 								<input type="text" size="30" name="xlInput" id="xlInput"
-									class="xlarge error"> <span class="help-inline">the current </span>
+									class="xlarge error"> <span class="help-inline">the
+									current </span>
 							</div>
 						</div>
 
@@ -137,22 +134,27 @@
 								<ul class="inputs-list">
 									<li><label> <input type="checkbox" value="option1"
 											name="optionsCheckboxes"> <span>Option one is
-												this and that&mdash;be sure to include why it’s great</span> </label></li>
+												this and that&mdash;be sure to include why it’s great</span>
+									</label></li>
 									<li><label> <input type="checkbox" value="option2"
 											name="optionsCheckboxes"> <span>Option two can
-												also be checked and included in form results</span> </label></li>
+												also be checked and included in form results</span>
+									</label></li>
 									<li><label> <input type="checkbox" value="option2"
 											name="optionsCheckboxes"> <span>Option three
 												can&mdash;yes, you guessed it&mdash;also be checked and
-												included in form results</span> </label></li>
+												included in form results</span>
+									</label></li>
 									<li><label class="disabled"> <input
 											type="checkbox" disabled="" value="option2"
 											name="optionsCheckboxes"> <span>Option four
-												cannot be checked as it is disabled.</span> </label></li>
+												cannot be checked as it is disabled.</span>
+									</label></li>
 								</ul>
 								<span class="help-block"> <strong>Note:</strong> Labels
 									surround all the options for much larger click areas and a more
-									usable form. </span>
+									usable form.
+								</span>
 							</div>
 						</div>
 						<!-- /clearfix -->
@@ -185,10 +187,12 @@
 								<ul class="inputs-list">
 									<li><label> <input type="checkbox" value="option1"
 											name="optionsCheckboxes"> <span>Option one is
-												this and that&mdash;be sure to include why it’s great</span> </label></li>
+												this and that&mdash;be sure to include why it’s great</span>
+									</label></li>
 									<li><label> <input type="checkbox" value="option2"
 											name="optionsCheckboxes"> <span>Option two can
-												also be checked and included in form results</span> </label></li>
+												also be checked and included in form results</span>
+									</label></li>
 								</ul>
 							</div>
 						</div>
@@ -210,17 +214,24 @@
 		<img src="images/loading36.gif" />
 	</div>
 	<footer>
-	<p>&copy; manyinjin@gmail.com</p>
+		<p>&copy; manyinjin@gmail.com</p>
 	</footer>
 	</div>
 </body>
 <script type="text/javascript">
 	$(function() {
-		$("#ajax_loading_div").ajaxStart(function() {
-			$(this).css("top", ($(window).height() - $(this).height()) / 2 + $(window).scrollTop() + "px");
-			$(this).css("left", ($(window).width() - $(this).width()) / 2 + $(window).scrollLeft() + "px");
-			$(this).show();
-		})
+		$("#ajax_loading_div").ajaxStart(
+				function() {
+					$(this).css(
+							"top",
+							($(window).height() - $(this).height()) / 2
+									+ $(window).scrollTop() + "px");
+					$(this).css(
+							"left",
+							($(window).width() - $(this).width()) / 2
+									+ $(window).scrollLeft() + "px");
+					$(this).show();
+				})
 		$("#ajax_loading_div").ajaxComplete(function() {
 			$(this).hide();
 		});

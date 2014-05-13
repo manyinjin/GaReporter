@@ -5,8 +5,8 @@
     var googleAuth = new OAuth2('google', {
         client_id : '346352551068.apps.googleusercontent.com',
         client_secret : 'uo6q61Ltl2jWdFxfckwoJjfH',
-        // api_scope : 'https://www.googleapis.com/auth/analytics.readonly'
-        api_scope : 'https://www.google.com/analytics/feeds/'
+        api_scope : 'https://www.googleapis.com/auth/analytics'
+        //api_scope : 'https://www.google.com/analytics/feeds/'
     });
 
     ChromeExt.Account = function() {
@@ -50,8 +50,8 @@
     };
 
     ChromeExt.Analytics.prototype.getMetrics = function(options) {
-        // var url = "https://www.googleapis.com/analytics/v2.4/data";
-        var url = "https://www.google.com/analytics/feeds/data";
+         var url = "https://www.googleapis.com/analytics/v2.4/data";
+        //var url = "https://www.google.com/analytics/feeds/data";
         this.getFeed($.extend({
             url : url
         }, options));

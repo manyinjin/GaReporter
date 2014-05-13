@@ -1,4 +1,5 @@
 {
+    "manifest_version":2,
     "name": "GA reports generator",
     "version": "1.6.1",
     "description": "Developed by Andy: manyinjin@gmail.com",
@@ -6,9 +7,12 @@
         "default_icon": "images/graph.png",
         "default_title": "GA reporter 1.6.1"
      },
-    "background_page": "index.html",
+    "background": {
+        "persistent": false,
+        "scripts":["js/background.js"]
+    },
     "permissions": [
-        "tabs", "https://www.google.com/", "https://accounts.google.com/o/oauth2/token"
+        "tabs", "https://*.google.com/"
     ],
     "icons": {"16": "images/graph.png", "48":"images/graph.png", "128": "images/graph.png"},
    "update_url": "http://211.103.229.236:90/extension/update.xml",
@@ -17,5 +21,9 @@
            "matches": ["http://www.google.com/robots.txt*"],
            "js": ["oauth2/oauth2_inject.js"],
            "run_at": "document_start"
-    }]
+    }],
+    "web_accessible_resources": [
+         "oauth2/oauth2.html"
+    ],
+    "content_security_policy": "script-src 'self' 'unsafe-eval'; object-src 'self'"
 }

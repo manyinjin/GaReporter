@@ -58,6 +58,9 @@
                         });
                         $("input[name='account_radio']").click(function() {
                             $("#view_report_btn").show();
+                            $("#view_report_btn").on("click", function(){
+                            	gaReportExt.showReportPage();
+                            })
                         });
                     });
                 }
